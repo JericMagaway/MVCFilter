@@ -89,19 +89,27 @@ namespace MVCFilter.Controllers
         // GET: /Item/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            Item item = db.Items.Find(id);
+            return View(item);
         }
 
         //
         // POST: /Item/Delete/5
         [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        public ActionResult Delete(int id, Item item)
         {
             try
             {
-                // TODO: Add delete logic here
+                if (ModelState.IsValid)
+                {
 
-                return RedirectToAction("Index");
+
+                    // TODO: Add delete logic here
+
+                    return RedirectToAction("Index");
+                }
+                return View(item);
+
             }
             catch
             {

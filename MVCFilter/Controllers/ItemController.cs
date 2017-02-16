@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MVCFilter.Context;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,11 +9,12 @@ namespace MVCFilter.Controllers
 {
     public class ItemController : Controller
     {
+        private ItemContext db = new ItemContext();
         //
         // GET: /Item/
         public ActionResult Index()
         {
-            return View();
+            return View(db.Items.ToList());
         }
 
         //

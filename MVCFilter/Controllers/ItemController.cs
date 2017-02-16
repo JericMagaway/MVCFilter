@@ -102,7 +102,12 @@ namespace MVCFilter.Controllers
             {
                 if (ModelState.IsValid)
                 {
+                  item = db.Items.Find(id);
+                    if (item == null)
+                        return HttpNotFound();
 
+                    db.Items.Remove(item);
+                    db.SaveChanges();
 
                     // TODO: Add delete logic here
 

@@ -22,7 +22,10 @@ namespace MVCFilter.Controllers
         // GET: /Item/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+            Item item = db.Items.Find(id);
+            if(item == null)
+               return HttpNotFound();
+            return View(item);
         }
 
         //

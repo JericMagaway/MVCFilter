@@ -13,9 +13,19 @@ namespace MVCFilter.Controllers
         private ItemContext db = new ItemContext();
         //
         // GET: /Item/
-        public ActionResult Index()
+        public ActionResult Index(string searchString)
         {
-            return View(db.Items.ToList());
+            var item = from a in db.Items
+                       select a;
+
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+
+                item = item.Where(s => s.Name.Contains(searchString));
+            }
+
+            return View(item);
         }
 
         //

@@ -12,7 +12,7 @@ namespace MVCFilter.Models
         public string  Name { get; set; }
         public string Description { get; set; }
         [Required]
-        [DataType(DataType.DateTime, ErrorMessage="Required Date")]
+        [DataType(DataType.Date, ErrorMessage="Required Date")]
         public DateTime Date { get; set; }
 
     }

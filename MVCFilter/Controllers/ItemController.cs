@@ -57,19 +57,27 @@ namespace MVCFilter.Controllers
         // GET: /Item/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            Item item= db.Items.Find(id);
+            return View(item);
         }
 
         //
         // POST: /Item/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(int id, Item item)
         {
             try
             {
                 // TODO: Add update logic here
+                if (ModelState.IsValid)
+                {
+                    db.Entry(item).State = System.Data.Entity.EntityState.Modified;
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
 
-                return RedirectToAction("Index");
+                return View(item);
+
             }
             catch
             {

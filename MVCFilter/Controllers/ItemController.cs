@@ -1,4 +1,5 @@
 ﻿using MVCFilter.Context;
+using MVCFilter.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -34,17 +35,18 @@ namespace MVCFilter.Controllers
         //
         // POST: /Item/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create(Item item)
         {
             try
             {
                 // TODO: Add insert logic here
-
+                db.Items.Add(item);
+                db.SaveChanges();
                 return RedirectToAction("Index");
             }
             catch
             {
-                return View();
+                return View(item);
             }
         }
 
